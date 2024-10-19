@@ -13,9 +13,11 @@ import Card from '../components/Card.astro';
 			<img src="/Curtain.svg" alt="Right Curtain" />
 		</div>
 		
-		<button id="enter-button">
-			<img src="/Ticket.svg" alt="Enter" width="200" height="119" />
-		</button>
+		<div id="enter-button-wrapper" >
+			<button id="enter-button">
+				<img src="/Ticket.svg" alt="Enter" width="400" height="219" />
+			</button>
+		</div>
 	</div>
 
 	<main>
@@ -142,7 +144,11 @@ import Card from '../components/Card.astro';
 	z-index: 900;
 	}
 
-	#enter-button {
+	#enter-button-wrapper {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	
     position:absolute;
     left:0;
 	right:0;
@@ -169,44 +175,60 @@ import Card from '../components/Card.astro';
 	filter: drop-shadow(0 2px 2px #000);
 	background: none;
 	border: none; 
-  }
+  	}
 
-  @keyframes floating3 {
-  0% {
-    transform:translate(0)
-  }
-  50% {
-    transform:translateY(4px)
-  }
-  to {
-    transform:translate(0)
-  }
-}
-@keyframes rotating {
-  0% {
-    rotate:-2deg;
-    scale:1
-  }
-  50% {
-    rotate:2deg;
-    scale:1.03
-  }
-  to {
-    rotate:-2deg;
-    scale:1
-  }
-}
-@keyframes jump {
-  0% {
-    opacity:0
-  }
-  50% {
-    visibility:visible;
-    opacity:1
-  }
-  to {
-    visibility:visible;
-    opacity:1
-  }
-}
+  	#enter-button {
+    background: none;
+    border: none;
+    transition: transform 1s ease, opacity 0.5s ease;
+	}
+
+	#enter-button:hover {
+		transform: scale(1.2);
+	}
+
+	.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+	}
+
+
+	@keyframes floating3 {
+		0% {
+			transform:translate(0)
+		}
+		50% {
+			transform:translateY(4px)
+		}
+		to {
+			transform:translate(0)
+		}
+	}
+	@keyframes rotating {
+		0% {
+			rotate:-2deg;
+			scale:1
+		}
+		50% {
+			rotate:2deg;
+			scale:1.03
+		}
+		to {
+			rotate:-2deg;
+			scale:1
+		}
+	}
+	@keyframes jump {
+		0% {
+			opacity:0
+		}
+		50% {
+			visibility:visible;
+			opacity:1
+		}
+		to {
+			visibility:visible;
+			opacity:1
+		}
+	}
 </style>
