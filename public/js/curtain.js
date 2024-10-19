@@ -1,5 +1,5 @@
 const fallingImage = document.getElementById('falling-image');
-const images = ['/BillBoard1.png', '/BillBoard2.png'];
+const images = ['/BillBoard1.webp', '/BillBoard2.webp'];
 let currentImageIndex = 0;
 
 // Function to change the image source
