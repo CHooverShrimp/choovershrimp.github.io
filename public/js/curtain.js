@@ -21,6 +21,8 @@ document.getElementById('enter-button').addEventListener('click', function() {
     document.querySelector('.curtain-left').style.transform = 'translateX(-100%)';
     document.querySelector('.curtain-right').style.transform = 'translateX(100%)';
 
+    document.querySelector('#enter-button').style.display = 'none';
+
     // Hide the curtain container after the animation
     setTimeout(function() {
         document.querySelector('.curtain-container').style.display = 'none';
