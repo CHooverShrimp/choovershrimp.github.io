@@ -1,3 +1,5 @@
+const fallingImage = document.getElementById('falling-image');
+
 // Array of quotes
 const quotes = [
     '"When I was a lad I clopped four dozen times." - Anon',
@@ -21,8 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.getElementById('enter-button').addEventListener('click', function() {
-    const fallingImage = document.getElementById('falling-image');
-
     fallingImage.style.top = '0px'; // Set final position
 
     this.classList.add('fade-out');

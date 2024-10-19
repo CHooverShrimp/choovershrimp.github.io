@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import Card from '../components/Card.astro';
 ---
 
 <Layout title="PTS v. irl">
 	<div class="curtain-container">
 		<div class="curtain-left">
-			<img src="/Curtain.svg" alt="Left Curtain" />
+			<Image  src="/Curtain.svg" alt="Left Curtain" width={1920} height={1080} />
 		</div>
 		
 		<div class="curtain-right">
-			<img src="/Curtain.svg" alt="Right Curtain" />
+			<Image  src="/Curtain.svg" alt="Right Curtain" width={1920} height={1080} />
 		</div>
 		
 		<div id="enter-button-wrapper" >
@@ -21,10 +22,18 @@ import Card from '../components/Card.astro';
 	<main>
 		<div class="falling-image" id="falling-image"></div>
 		<div class="image-container">
-			<img src="/image1.png" alt="anons" class="fading-image" />
+			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
 			<div class="gradient-overlay"></div>
 
-			<p id="Anon-quotes"> "I gave up my left testicle for this" - Anon</p>
+			<p id="Anon-quotes" style="font-size: 50px"> </p>
+		</div>
+		
+		<h style="margin: 20px; font-size: 50px"> <b> Who are we? </b> </h>
+		<div id="Container1" class="containerStyle1">
+			<div class="boxWrapper">
+				<p> Founded in 2024 on a Chinese horse husbandry forum, we are a merrily band of anons speading the words of mares around the globe.</p>
+				<p> Our mission: To spread joy and post ponies! </p>
+			</div>
 		</div>
 	</main>
 </Layout>
@@ -262,6 +271,38 @@ import Card from '../components/Card.astro';
 		position: absolute;
 		bottom: 100px;
 		filter: drop-shadow(0 10px 10px #000);
+	}
+
+	.containerStyle1 {
+		--flex-alignment: flex-start;
+		display: flex;
+		
+		align-items: center;
+		padding-left:20px;
+		padding-right:20px;
+		flex-direction: column; /* Set flex-direction to column */
+		backdrop-filter: blur(0.275rem);
+		border-color: rgba(255,255,255,0.271);
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 0.75rem;
+		margin-bottom: 20px;
+	}
+
+	.boxWrapper {
+		margin-top: 40px;
+		width: 100%;
+		display:flex;
+		justify-content: normal;
+		flex-direction: column;
+		align-items: center;
+		color: aliceblue;
+		font-size: 1.5rem;
+	}
+
+	.boxWrapper p {
+		margin-top: 0;
+		margin-bottom: 24px;
 	}
 
 	@media screen and (max-width: 1200px) {
