@@ -24,5 +24,5 @@ document.getElementById('enter-button').addEventListener('click', function() {
     // Hide the curtain container after the animation
     setTimeout(function() {
         document.querySelector('.curtain-container').style.display = 'none';
-    }, 1000);
+    }, 2000);
 });
