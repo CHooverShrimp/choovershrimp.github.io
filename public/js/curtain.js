@@ -1,15 +1,3 @@
-const fallingImage = document.getElementById('falling-image');
-const images = ['/BillBoard1.webp', '/BillBoard2.webp'];
-let currentImageIndex = 0;
-
-function changeImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    fallingImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-}
-
-// Switch images every 500 ms
-let imageSwitchInterval = setInterval(changeImage, 500);
-
 document.getElementById('enter-button').addEventListener('click', function() {
     const fallingImage = document.getElementById('falling-image');
 

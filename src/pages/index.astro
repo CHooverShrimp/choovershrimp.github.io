@@ -130,19 +130,32 @@ import Card from '../components/Card.astro';
 	}
 
 	.falling-image {
-		position: absolute;
-		top: -400px;
-		left: 50%;
-		transform: translateX(-50%);
-		background-image: url('/BillBoard1.webp');
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center;
-		width: 80%;
-		height: 300px;
-		transition: top 1s ease-in-out;
-		z-index: 900;
+    position: absolute;
+    top: -400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80%;
+    height: 300px;
+    transition: top 1s ease-in-out;
+    z-index: 900;
+    animation: changeImage 0.5s infinite;
 	}
+
+	@keyframes changeImage {
+		0% {
+			background-image: url('/BillBoard1.webp');
+		}
+		50% {
+			background-image: url('/BillBoard2.webp');
+		}
+		100% {
+			background-image: url('/BillBoard1.webp');
+		}
+	}
+
 
 	#enter-button-wrapper {
 		display: flex;
