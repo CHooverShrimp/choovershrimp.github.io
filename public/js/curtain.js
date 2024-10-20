@@ -39,6 +39,9 @@ document.getElementById('enter-button').addEventListener('click', function() {
     // Disable hidden overflow, let user scroll
     document.body.style.overflow = 'hidden';
 
+    // Let users interact immediately
+    document.querySelector('.curtain-container').style.pointerEvents = 'none'; 
+
     // Hide the curtain container after the animation
     setTimeout(function() {
         document.querySelector('.curtain-container').style.display = 'none';
