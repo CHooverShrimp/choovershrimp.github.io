@@ -44,3 +44,9 @@ document.getElementById('enter-button').addEventListener('click', function() {
         document.querySelector('.curtain-container').style.display = 'none';
     }, 2000);
 });
+
+// Easter egg, changes the quote by clicking on the board
+document.getElementById('falling-image').addEventListener('click', function() {
+    const quoteElement = document.getElementById('Anon-quotes');
+    quoteElement.textContent = getRandomQuote();
+});
