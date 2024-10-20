@@ -26,15 +26,85 @@ import Card from '../components/Card.astro';
 			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
 			<div class="gradient-overlay"></div>
 
-			<p id="Anon-quotes" style="font-size: 50px"> </p>
+			<p id="Anon-quotes"> </p>
 		</div>
 		
-		<h style="margin: 20px; font-size: 50px"> <b> Who are we? </b> </h>
-		<div id="Container1" class="containerStyle1">
-			<div class="boxWrapper">
-				<p> Founded in 2024 on a Chinese horse husbandry forum, we are a merrily band of anons speading the words of mares around the globe.</p>
-				<p> Our mission: To spread joy and post ponies! </p>
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> OUR TOURS </b> </h>
+		<div class="TourWrapper">
+			<span class="event-name">Mare Fair 2</span>
+			<span class="dash"> - </span>
+			<span class="event-date">Sept. 28th, 2024</span>
+		</div>	
+		<div class="TourWrapper">
+			<span class="event-name">MareCon 24</span>
+			<span class="dash"> - </span>
+			<span class="event-date">TBD</span>
+		</div>	
+
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> MEET OUR TALENTS </b> </h>
+		<div class="portrait-wrapper">
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 1" style="filter: hue-rotate(0deg) saturate(75%) brightness(100%);"  width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
 			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 2" style="filter: hue-rotate(2deg) saturate(100%) brightness(100%);"  width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 3" style="filter: hue-rotate(10deg) saturate(90%) brightness(100%);"  width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 4" style="filter: hue-rotate(0deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 5" style="filter: hue-rotate(5deg) saturate(80%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 6" style="filter: hue-rotate(0deg) saturate(75%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 7" style="filter: hue-rotate(0deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 8" style="filter: hue-rotate(2deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 9" style="filter: hue-rotate(10deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 10" style="filter: hue-rotate(5deg) saturate(90%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 11" style="filter: hue-rotate(15deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 12" style="filter: hue-rotate(0deg) saturate(70%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 13" style="filter: hue-rotate(2deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<div class="portrait">
+				<Image src="/Anon.png" alt="Talent 14" style="filter: hue-rotate(2deg) saturate(80%) brightness(100%);" width={150} height={150} />
+				<p class="portrait-name"> Anon </p>
+			</div>
+			<!-- Add more portraits as needed -->
+		</div>
+		
+		
+		
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b>   </b> </h>
 		</div>
 	</main>
 </Layout>
@@ -50,6 +120,7 @@ import Card from '../components/Card.astro';
 	}
 
 	main {
+		flex: 1;  /* Make the main content take up available space */
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
@@ -66,7 +137,7 @@ import Card from '../components/Card.astro';
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: auto;
+		width: 100vw;
 		height: auto;
 		overflow: hidden;
 	}
@@ -281,6 +352,43 @@ import Card from '../components/Card.astro';
 		position: absolute;
 		bottom: 100px;
 		filter: drop-shadow(0 10px 10px #000);
+		max-width: 1000px;
+		font-size: 50px
+	}
+
+	.portrait-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+		margin-top: 40px;
+		width: 80vw;
+	}
+
+	.portrait {
+		flex: 0 1 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 150px;
+		overflow: hidden;
+	}
+
+	.portrait img {
+		width: 100%;
+		border-radius: 10px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+		height: auto;
+	}
+
+	.portrait-name {
+		text-align: center;
+		margin-top: 8px;
+		font-size: 16px;
+		color: #789922;
+		font-weight: bold;
 	}
 
 	.containerStyle1 {
@@ -315,6 +423,45 @@ import Card from '../components/Card.astro';
 		margin-bottom: 24px;
 	}
 
+	.TourWrapper {
+		border-radius: 0.75rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 90%;
+		margin: 2px auto;
+		font-size: 24px;
+		background-color: rgba(0, 0, 0, 0.4);
+		padding: 10px;
+		position: relative;
+		transition: transform 0.5s ease;
+	}
+
+	.TourWrapper .event-name, .TourWrapper .event-date {
+		position: absolute;
+		white-space: nowrap;
+	}
+	.TourWrapper .event-name {
+		left: 20px;
+		text-align: left;
+	}
+
+	.TourWrapper .event-date {
+		right: 20px;
+		text-align: right;
+	}
+
+	.TourWrapper .dash {
+		margin: 0 10px;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	.TourWrapper:hover {
+		transform: scale(1.05);
+	}
+
 	@media screen and (max-width: 1200px) {
 		.fading-image {
 			width: auto;
@@ -324,6 +471,24 @@ import Card from '../components/Card.astro';
 
 		.falling-image {
 			height: 250px;
+		}
+
+		#Anon-quotes{
+			filter: drop-shadow(0 10px 10px #000);
+			font-size: 30px;
+			max-width: 600px;
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		#Anon-quotes{
+			filter: drop-shadow(0 10px 10px #000);
+			font-size: 30px;
+			max-width: 400px;
+		}
+
+		.TourWrapper .dash {
+			visibility: hidden;
 		}
 	}
 </style>

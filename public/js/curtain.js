@@ -5,7 +5,7 @@ const quotes = [
     '"When I was a lad I clopped four dozen times." - Anon',
     '"Sex with Purp." - Anon',
     '"Portal to Equestria!" - Anon',
-    '"Why do all of these have dicks!?" - Anon',
+    '"Why do they all have dicks!?" - Anon',
     '"We\'re anons to the core!" - Anon',
     '"Hey, is that Lauren Faust?!" - Anon',
 ];
@@ -18,6 +18,7 @@ function getRandomQuote() {
 
 // Display a random quote on page load
 document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0); // Force users to go back to the top upon refresh
     const quoteElement = document.getElementById('Anon-quotes');
     quoteElement.textContent = getRandomQuote();
 });
@@ -36,7 +37,7 @@ document.getElementById('enter-button').addEventListener('click', function() {
     }, 500)
     
     // Disable hidden overflow, let user scroll
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'hidden';
 
     // Hide the curtain container after the animation
     setTimeout(function() {
