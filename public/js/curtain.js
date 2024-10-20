@@ -37,7 +37,7 @@ document.getElementById('enter-button').addEventListener('click', function() {
     }, 500)
     
     // Disable hidden overflow, let user scroll
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflowY = 'scroll';
 
     // Let users interact immediately
     document.querySelector('.curtain-container').style.pointerEvents = 'none'; 
