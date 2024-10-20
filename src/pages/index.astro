@@ -388,8 +388,8 @@ import Card from '../components/Card.astro';
 		0% {
 			z-index: 1;
 		}
-		99% {
-			z-index: 1;
+		80% {
+			z-index: 0;
 		}
 		100% {
 			z-index: 0;
@@ -399,7 +399,7 @@ import Card from '../components/Card.astro';
 	.portrait:not(:hover) {
 		animation: zIndexDelay 1s forwards;
 	}
-	
+
 	.portrait img {
 		width: 100%;
 		border-radius: 10px;
