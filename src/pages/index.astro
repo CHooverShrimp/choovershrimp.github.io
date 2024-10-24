@@ -15,7 +15,7 @@ import Card from '../components/Card.astro';
 		</div>
 		
 		<div id="enter-button-wrapper" >
-			<div id="enter-button"> </div>
+			<div id="enter-button" role="button" aria-label="Enter the site" tabindex="0"> </div>
 		</div>
 	</div>
 
@@ -25,10 +25,20 @@ import Card from '../components/Card.astro';
 			<div class="gradient1"></div>
 			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
 			<div class="gradient-overlay"></div>
-
 			<p id="Anon-quotes"> </p>
 		</div>
+
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
+		<div class="image-container" id="CollageWrapper">
+			<Image src="/image2.jpg" alt="anons" class="CollageImage" id="CollageImage1" width={672} height={504}/>
+			<Image src="/image3.jpg" alt="anons" class="CollageImage" id="CollageImage2" width={672} height={504}/>
+			<Image src="/faust.png" alt="anons" class="CollageImage" id="CollageImage3" width={672} height={504}/>
+			<Image src="/image5.jpg" alt="anons" class="CollageImage" id="CollageImage4" width={672} height={504}/>
+			<Image src="/image6.jpg" alt="anons" class="CollageImage" id="CollageImage5" width={672} height={504}/>
+			<Image src="/image7.jpg" alt="anons" class="CollageImage" id="CollageImage6" width={672} height={504}/>
+		</div>
 		
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> OUR TOURS </b> </h>
 		<div class="TourWrapper">
 			<span class="event-name">Mare Fair 2</span>
@@ -40,8 +50,9 @@ import Card from '../components/Card.astro';
 			<span class="dash"> - </span>
 			<span class="event-date">TBD</span>
 		</div>	
+		
 
-		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> MEET OUR TALENTS </b> </h>
+		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
 		<div class="portrait-wrapper">
 			<div class="portrait">
 				<Image src="/Anon.png" alt="Talent 1" style="filter: hue-rotate(0deg) saturate(75%) brightness(100%);"  width={150} height={150} />
@@ -72,7 +83,7 @@ import Card from '../components/Card.astro';
 				<p class="portrait-name"> Anonymous </p>
 			</div>
 			<div class="portrait">
-				<Image src="/Anon.png" alt="Talent 8" style="filter: hue-rotate(2deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<Image src="/Anon.png" alt="Talent 8" style="filter: hue-rotate(2deg) saturate(110%) brightness(100%);" width={150} height={150} />
 				<p class="portrait-name"> Anonymous </p>
 			</div>
 			<div class="portrait">
@@ -92,7 +103,7 @@ import Card from '../components/Card.astro';
 				<p class="portrait-name"> Anonymous </p>
 			</div>
 			<div class="portrait">
-				<Image src="/Anon.png" alt="Talent 13" style="filter: hue-rotate(2deg) saturate(100%) brightness(100%);" width={150} height={150} />
+				<Image src="/Anon.png" alt="Talent 13" style="filter: hue-rotate(2deg) saturate(120%) brightness(100%);" width={150} height={150} />
 				<p class="portrait-name"> Anonymous </p>
 			</div>
 			<div class="portrait">
@@ -112,6 +123,48 @@ import Card from '../components/Card.astro';
 <script src="/js/curtain.js" type="module"></script>
 
 <style>
+	h, h1, h2, h3, h4, h5, h6 {
+		text-align: center;
+	}
+	/* There must be a better way, but I'm to dumb to figure it out */
+	#CollageWrapper{
+		display: grid; 
+		grid-template-columns: repeat(2, 1fr); 
+		max-width: 100%;
+	}
+
+	.CollageImage{
+		border-color:beige;
+		border-width: 10px;
+		border-style: solid;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
+		object-fit: cover;
+		max-width: 100%;
+		height:auto;
+	}
+
+	#CollageImage1, #CollageImage3, #CollageImage5{
+		transform: translateX(20px) rotate(2deg);
+		justify-self: right; 
+		transition: transform 0.5s ease;
+	}
+
+	#CollageImage2, #CollageImage4, #CollageImage6{
+		transform: translateX(-20px) translatey(100px) rotate(-1deg);
+		justify-self: left; 
+		transition: transform 0.5s ease;
+	}
+
+	#CollageImage1:hover, #CollageImage3:hover, #CollageImage5:hover {
+		transform: translateX(20px) rotate(0deg);
+		z-index: 1;
+	}
+
+	#CollageImage2:hover, #CollageImage4:hover, #CollageImage6:hover  {
+		transform: translateX(-20px) translatey(100px) rotate(0deg);
+		z-index: 1;
+	}
+
 	:root {
 		--elastic: linear( 0, .0009 8.51%, -.0047 19.22%, .0016 22.39%, .023 27.81%, .0237 30.08%, .0144 31.81%, -.0051 33.48%, -.1116 39.25%, -.1181 40.59%, -.1058 41.79%, -.0455, .0701 45.34%, .9702 55.19%, 1.0696 56.97%, 1.0987 57.88%, 1.1146 58.82%, 1.1181 59.83%, 1.1092 60.95%, 1.0057 66.48%, .986 68.14%, .9765 69.84%, .9769 72.16%, .9984 77.61%, 1.0047 80.79%, .9991 91.48%, 1 );
 		--sine: linear( 0, .007 5.35%, .0282 10.75%, .0638 16.26%, .1144 21.96%, .1833 28.16%, .2717 34.9%, .6868 62.19%, .775 68.54%, .8457 74.3%, .9141 81.07%, .9621 87.52%, .9905 93.8%, 1 );
@@ -120,7 +173,7 @@ import Card from '../components/Card.astro';
 	}
 
 	main {
-		flex: 1;  /* Make the main content take up available space */
+		flex: 1;
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
@@ -137,9 +190,10 @@ import Card from '../components/Card.astro';
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-wrap: wrap;
 		width: 100vw;
 		height: auto;
-		overflow: hidden;
+		overflow: visible;   /* Please not be clipped by the container */
 	}
 
 	.gradient1 {
@@ -194,7 +248,7 @@ import Card from '../components/Card.astro';
 		width: 100%;
 		height: 100vh;
 		z-index: 999;
-		overflow: hidden;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -374,13 +428,13 @@ import Card from '../components/Card.astro';
 		text-align: center;
 		width: 150px;
 		overflow: hidden;
-		transition: transform 1s ease;
+		transition: transform 0.5s ease;
 		position: relative;
 		z-index: 0;
 	}
 
 	.portrait:hover {
-		transform: scale(1.5);
+		transform: scale(1.2);
 		z-index: 1;
 	}
 
@@ -484,6 +538,43 @@ import Card from '../components/Card.astro';
 
 	.TourWrapper:hover {
 		transform: scale(1.05);
+	}
+	
+	@media screen and (max-width:1400px) {
+		/* There must be a better way, but I'm to dumb to figure it out */
+		#CollageWrapper{
+			grid-template-columns: repeat(1, 1fr); 
+			justify-content: flex-start; 
+		}
+
+		.CollageImage{
+			border-color:beige;
+			border-width: 10px;
+			border-style: solid;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+			max-width: 90%;
+		}
+
+		.CollageImage:hover{
+			z-index: 1;
+		}
+
+		#CollageImage1, #CollageImage3, #CollageImage5{
+			transform: translateX(0px) rotate(1deg);
+			justify-self: center;
+			transition: transform 0.5s ease;
+		}
+
+		#CollageImage2, #CollageImage4, #CollageImage6{
+			transform: translateX(0px) translatey(0px) rotate(-1deg);
+			justify-self: center;
+			transition: transform 0.5s ease;
+		}
+
+		#CollageImage1:hover, #CollageImage2:hover, #CollageImage3:hover, #CollageImage4:hover, #CollageImage5:hover, #CollageImage6:hover {
+			transform: none
+		}
+
 	}
 
 	@media screen and (max-width: 1200px) {
