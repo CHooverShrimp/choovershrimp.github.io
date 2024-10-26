@@ -330,7 +330,7 @@ import Card from '../components/Card.astro';
 		animation-name:jump,rotating;
 		animation-duration:1.2s,4s;
 		animation-timing-function:cubic-bezier(.77,.01,.25,1),var(--sine);
-		animation-delay:3s,1s;
+		animation-delay:0s,1s;
 		animation-iteration-count:1,infinite;
 		animation-direction:normal,normal;
 		animation-fill-mode:forwards,forwards;
@@ -338,6 +338,7 @@ import Card from '../components/Card.astro';
 		filter: drop-shadow(0 2px 2px #000);
 		background: none;
 		border: none; 
+		opacity:0;
   	}
 
 	#enter-button {
@@ -389,7 +390,7 @@ import Card from '../components/Card.astro';
 	}
 	@keyframes jump {
 		0% {
-			opacity:1
+			opacity:0;
 		}
 		50% {
 			visibility:visible;
