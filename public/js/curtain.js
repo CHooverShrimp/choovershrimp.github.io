@@ -53,3 +53,28 @@ document.getElementById('falling-image').addEventListener('click', function() {
     const quoteElement = document.getElementById('Anon-quotes');
     quoteElement.textContent = getRandomQuote();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const styleSelect = document.getElementById("style");
+    const selectedStyle = localStorage.getItem("selectedStyle");
+
+    // Set the select element to the last selected style from localStorage
+    if (selectedStyle) {
+        styleSelect.value = selectedStyle; // Set the selected option
+        changeStyle(); // Call changeStyle to apply the class
+    }
+
+    // Attach the changeStyle function to the select change event
+    styleSelect.addEventListener("change", changeStyle);
+
+    function changeStyle() {
+        const selectedStyle = styleSelect.value;
+        if (selectedStyle === "Yotsuba-B") {
+            document.documentElement.classList.add("Yotsuba-B");
+            localStorage.setItem("selectedStyle", "Yotsuba-B"); // Store the selection
+        } else {
+            document.documentElement.classList.remove("Yotsuba-B");
+            localStorage.setItem("selectedStyle", "default"); // Reset selection
+        }
+    }
+});

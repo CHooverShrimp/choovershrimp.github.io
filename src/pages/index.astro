@@ -20,7 +20,11 @@ import Card from '../components/Card.astro';
 	</div>
 
 	<main>
-		<div class="falling-image" id="falling-image"></div>
+		<div class="falling-image" id="falling-image">
+			<h1> PTS V. IRL </h1>
+			<h1> MARECON 2025 </h1>
+			<h1> ADMISSION FREE </h1>
+		</div>
 		<div class="image-container">
 			<div class="gradient1"></div>
 			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
@@ -28,7 +32,7 @@ import Card from '../components/Card.astro';
 			<p id="Anon-quotes"> </p>
 		</div>
 
-		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> BOARD HISTORY RETOLD </b> </h>
 		<div class="image-container" id="CollageWrapper">
 			<Image src="/image2.jpg" alt="anons" class="CollageImage" id="CollageImage1" width={672} height={504}/>
 			<Image src="/image3.jpg" alt="anons" class="CollageImage" id="CollageImage2" width={672} height={504}/>
@@ -39,7 +43,7 @@ import Card from '../components/Card.astro';
 		</div>
 		
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
-		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> OUR TOURS </b> </h>
+		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> SEE OUR TOURS </b> </h>
 		<div class="TourWrapper">
 			<span class="event-name">Mare Fair 2</span>
 			<span class="dash"> - </span>
@@ -112,19 +116,42 @@ import Card from '../components/Card.astro';
 			</div>
 			<!-- Add more portraits as needed -->
 		</div>
-		
+			
 		
 		
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b>   </b> </h>
+		
+		<div class="stylechanger-container">
+			<label for="style">Style :
+				<select name="style" id="style" onchange="changeStyle()">
+					<option value="default" selected>Default</option>
+					<option value="Yotsuba-B">Yotsuba B</option>
+				</select>
+			</label>
 		</div>
+
+
 	</main>
+
+
 </Layout>
 
 <script src="/js/curtain.js" type="module"></script>
 
 <style>
+	/* Search for Yotsuba-B for alternative style */
+
+	.stylechanger-container {
+		margin-left: auto;
+		margin-right: 20px;
+	}
+
 	h, h1, h2, h3, h4, h5, h6 {
 		text-align: center;
+	}
+
+	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
+		color: #0f0c5d;
 	}
 	/* There must be a better way, but I'm to dumb to figure it out */
 	#CollageWrapper{
@@ -185,6 +212,11 @@ import Card from '../components/Card.astro';
 		font-size: 20px;
 		line-height: 1.6;
 	}
+
+	html.Yotsuba-B main {
+		color: black;
+	}
+
 	.image-container {
 		position: relative;
 		display: flex;
@@ -205,6 +237,10 @@ import Card from '../components/Card.astro';
 		pointer-events: none;
 	}
 
+	html.Yotsuba-B-UNUSED .gradient1 {
+		background: radial-gradient(circle, transparent 50%, #eef2ff);
+	}
+
 	.fading-image {
 		max-width: 100vw;
 		width: 100vw;
@@ -221,6 +257,10 @@ import Card from '../components/Card.astro';
 		height: 20%;
 		background: linear-gradient(to bottom, transparent, #13151a);
 		pointer-events: none;
+	}
+
+	html.Yotsuba-B .gradient-overlay {
+		background: linear-gradient(to bottom, transparent, #eef2ff);
 	}
 
 	body {
@@ -292,6 +332,15 @@ import Card from '../components/Card.astro';
 		z-index: 900;
 		animation: changeImage 0.5s infinite;
 		filter: drop-shadow(0 10px 10px #000);
+	}
+
+	.falling-image h1{
+		font-family: "Oswald", sans-serif;
+		margin:0 0;
+		line-height: 1.2;
+		transform: translateY(85px);
+		color: black;
+		font-size: 50px;
 	}
 
 	@keyframes changeImage {
@@ -408,7 +457,8 @@ import Card from '../components/Card.astro';
 		bottom: 100px;
 		filter: drop-shadow(0 10px 10px #000);
 		max-width: 80vw;
-		font-size: 50px
+		font-size: 50px;
+		color: white;
 	}
 
 	.portrait-wrapper {
@@ -513,7 +563,15 @@ import Card from '../components/Card.astro';
 		background-color: rgba(0, 0, 0, 0.4);
 		padding: 10px;
 		position: relative;
-		transition: transform 0.5s ease;
+		transition: transform 0.2s ease;
+	}
+
+	html.Yotsuba-B .TourWrapper {
+		background-color: #d6daf0;
+	}
+
+	html.Yotsuba-B .TourWrapper:hover {
+		background: #d6bad0 !important;
 	}
 
 	.TourWrapper .event-name, .TourWrapper .event-date {
@@ -538,7 +596,7 @@ import Card from '../components/Card.astro';
 	}
 
 	.TourWrapper:hover {
-		transform: scale(1.05);
+		transform: scale(1.005);
 	}
 	
 	@media screen and (max-width:1400px) {
@@ -549,9 +607,6 @@ import Card from '../components/Card.astro';
 		}
 
 		.CollageImage{
-			border-color:beige;
-			border-width: 10px;
-			border-style: solid;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 			max-width: 90%;
 		}
@@ -587,6 +642,11 @@ import Card from '../components/Card.astro';
 
 		.falling-image {
 			height: 250px;
+		}
+
+		.falling-image h1{
+			font-size: 42px;
+			transform: translateY(70px);
 		}
 
 		#Anon-quotes{
