@@ -15,11 +15,11 @@ function showPopup(popupId) {
     const popupElement = document.getElementById(popupId);
     if (popupElement) {
         popupElement.classList.add("popup-show");
-        backdrop.classList.add("popup-show"); // Add popup-show class to backdrop
+        backdrop.classList.add("popup-show");
     }
 }
 
 function hideAllPopups() {
     document.querySelectorAll(".popup").forEach((popup) => popup.classList.remove("popup-show"));
-    backdrop.classList.remove("popup-show"); // Remove popup-show class from backdrop
+    backdrop.classList.remove("popup-show");
 }

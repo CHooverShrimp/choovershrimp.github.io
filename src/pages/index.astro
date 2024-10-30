@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import Card from '../components/Card.astro';
 ---
 
 <!-- TODO: ADD A BACK BUTTON FOR MOBILE -->
@@ -170,6 +169,7 @@ import Card from '../components/Card.astro';
 		width: 90%;
 		height: 90%;
 	}
+
 	#popup-backdrop {
 		transform: translate(0%,0%);
 	}
@@ -305,10 +305,6 @@ import Card from '../components/Card.astro';
 		height: 100%;
 		background: radial-gradient(circle, transparent 50%, rgb(0, 0, 0));
 		pointer-events: none;
-	}
-
-	html.Yotsuba-B-UNUSED .gradient1 {
-		background: radial-gradient(circle, transparent 50%, var(--background-color-yotsuba-b));
 	}
 
 	.fading-image {
