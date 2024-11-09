@@ -24,14 +24,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.getElementById('enter-button').addEventListener('click', function() {
+    // Setting the panel to go down
     fallingImage.style.top = '0px'; // Set final position
 
+    const elementLeft = document.querySelector('.curtain-left');
+    const elementRight = document.querySelector('.curtain-right');
+    
+    elementLeft.classList.add('animate-curtain-left');
+    elementRight.classList.add('animate-curtain-right');
+    
+    // Hiding the button
     this.classList.add('fade-out');
-
-    // Move curtains
-    document.querySelector('.curtain-left').style.transform = 'translateX(-100%)';
-    document.querySelector('.curtain-right').style.transform = 'translateX(100%)';
-
     setTimeout(() => {
         this.style.display = 'none';
     }, 500)
