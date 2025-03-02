@@ -14,11 +14,11 @@ import { Image } from 'astro:assets';
 		<div class="curtain-left">
 			<Image  src="/Curtain.svg" alt="Left Curtain" width={1920} height={1080} loading="eager" />
 		</div>
-		
+
 		<div class="curtain-right">
 			<Image  src="/Curtain.svg" alt="Right Curtain" width={1920} height={1080} loading="eager" />
 		</div>
-		
+
 		<div id="enter-button-wrapper" >
 			<div id="enter-button" role="button" aria-label="Enter the site" tabindex="0"> </div>
 		</div>
@@ -40,8 +40,11 @@ import { Image } from 'astro:assets';
 		</div>
 		<div class="image-container">
 			<div class="gradient1"></div>
-			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
-			<div class="gradient-overlay"></div>
+			<video src="/video.webm" autoplay class="fading-image" style="filter: blur(8px);"/>
+			<div class="bg-color w-fit h-fit absolute rounded-xl flex items-center flex-col p-10 bottom-[20%] shadow-lg">
+				<span class="pb-5 font-bold text-4xl"> SEE THE MARE FAIR 2025 TOUR TEASER! </span>
+				<iframe width="720" height="405" src="https://www.youtube.com/embed/XozFHxUimgs?si=e67qVCZRlr_IEQx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			</div>
 			<p id="Anon-quotes"> </p>
 		</div>
 
@@ -54,20 +57,20 @@ import { Image } from 'astro:assets';
 			<Image src="/image6.jpg" alt="anons" class="CollageImage" id="CollageImage5" width={672} height={504}/>
 			<Image src="/image7.jpg" alt="anons" class="CollageImage" id="CollageImage6" width={672} height={504}/>
 		</div>
-		
+
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> SEE OUR TOURS </b> </h>
 		<div class="TourWrapper" data-popup="MareFair24">
 			<span class="event-name">Mare Fair 2</span>
 			<span class="dash"> - </span>
 			<span class="event-date">Sept. 28th, 2024</span>
-		</div>	
+		</div>
 		<div class="TourWrapper" data-popup="MareCon25">
 			<span class="event-name">MareCon 25</span>
 			<span class="dash"> - </span>
 			<span class="event-date">TBD</span>
-		</div>	
-		
+		</div>
+
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
 		<div class="portrait-wrapper">
@@ -129,11 +132,11 @@ import { Image } from 'astro:assets';
 			</div>
 			<!-- Add more portraits as needed -->
 		</div>
-			
-		
-		
+
+
+
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b>   </b> </h>
-		
+
 		<div class="stylechanger-container">
 			<label for="style">Style :
 				<select name="style" id="style" onchange="changeStyle()">
@@ -145,7 +148,7 @@ import { Image } from 'astro:assets';
 
 	</main>
 
-	
+
 </Layout>
 
 <style>
@@ -185,6 +188,10 @@ import { Image } from 'astro:assets';
 		transition: transform 0.2s ease-out,opacity 0.2s ease-in-out;
 		visibility: hidden;
 		opacity: 0;
+	}
+
+	.bg-color {
+		background-color: var(--background-color);
 	}
 
 	.popup {
@@ -232,8 +239,8 @@ import { Image } from 'astro:assets';
 	}
 	/* There must be a better way, but I'm to dumb to figure it out */
 	#CollageWrapper{
-		display: grid; 
-		grid-template-columns: repeat(2, 1fr); 
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
 		max-width: 100%;
 	}
 
@@ -249,13 +256,13 @@ import { Image } from 'astro:assets';
 
 	#CollageImage1, #CollageImage3, #CollageImage5{
 		transform: translateX(20px) rotate(2deg);
-		justify-self: right; 
+		justify-self: right;
 		transition: transform 0.5s ease;
 	}
 
 	#CollageImage2, #CollageImage4, #CollageImage6{
 		transform: translateX(-20px) translatey(100px) rotate(-1deg) ;
-		justify-self: left; 
+		justify-self: left;
 		transition: transform 0.5s ease;
 	}
 
@@ -354,24 +361,27 @@ import { Image } from 'astro:assets';
 		width: 100%;
 		height: 100vh;
 		z-index: 999;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		overflow: hidden; /* Add this */
 	}
 
 	.curtain-left, .curtain-right {
 		position: relative;
 		top: 0;
 		height: 100%;
+		min-width: 100%; /* Add this */
 		transition: transform 2.2s ease-in-out;
 		box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
 	}
 
 	.curtain-left img, .curtain-right img {
-		height: 100%;
+		height: 100vh;
 		width: auto;
+		min-width: 100%; /* Add this */
 		display: block;
+		object-fit: cover; /* Add this */
 	}
 
 	.curtain-left {
@@ -458,7 +468,7 @@ import { Image } from 'astro:assets';
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 		position:absolute;
 		left:0;
 		right:0;
@@ -484,7 +494,7 @@ import { Image } from 'astro:assets';
 		z-index: 1000;
 		filter: drop-shadow(0 2px 2px #000);
 		background: none;
-		border: none; 
+		border: none;
 		opacity:0;
   	}
 
@@ -621,7 +631,7 @@ import { Image } from 'astro:assets';
 	.containerStyle1 {
 		--flex-alignment: flex-start;
 		display: flex;
-		
+
 		align-items: center;
 		padding-left:20px;
 		padding-right:20px;
@@ -700,12 +710,12 @@ import { Image } from 'astro:assets';
 	.TourWrapper:hover {
 		transform: scale(1.005);
 	}
-	
+
 	@media screen and (max-width:1400px) {
 		/* There must be a better way, but I'm to dumb to figure it out */
 		#CollageWrapper{
-			grid-template-columns: repeat(1, 1fr); 
-			justify-content: flex-start; 
+			grid-template-columns: repeat(1, 1fr);
+			justify-content: flex-start;
 		}
 
 		.CollageImage{
