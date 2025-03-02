@@ -33,7 +33,7 @@ import { Image } from 'astro:assets';
 			</iframe>
 		</div>
 
-		<div class="falling-image" id="falling-image">
+		<div class="falling-image cursor-pointer" id="falling-image">
 			<h1> PTS V. IRL </h1>
 			<h1> MARECON 2025 </h1>
 			<h1> ADMISSION FREE </h1>
@@ -41,11 +41,12 @@ import { Image } from 'astro:assets';
 		<div class="image-container">
 			<div class="gradient1"></div>
 			<video src="/video.webm" autoplay class="fading-image" style="filter: blur(8px);"/>
-			<div class="bg-color w-fit h-fit absolute rounded-xl flex items-center flex-col p-10 bottom-[20%] shadow-lg">
-				<span class="pb-5 font-bold text-4xl"> SEE THE MARE FAIR 2025 TOUR TEASER! </span>
-				<iframe width="720" height="405" src="https://www.youtube.com/embed/XozFHxUimgs?si=e67qVCZRlr_IEQx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-			</div>
 			<p id="Anon-quotes"> </p>
+		</div>
+
+		<div class="bg-color-alt w-fit h-fit rounded-xl flex items-center flex-col p-10 shadow-lg mt-20">
+			<h class="pb-5 font-bold text-4xl"> SEE THE MARE FAIR 2025 TOUR TEASER! </h>
+			<iframe width="720" height="405" src="https://www.youtube.com/embed/XozFHxUimgs?si=e67qVCZRlr_IEQx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 		</div>
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> BOARD HISTORY RETOLD </b> </h>
@@ -190,10 +191,6 @@ import { Image } from 'astro:assets';
 		opacity: 0;
 	}
 
-	.bg-color {
-		background-color: var(--background-color);
-	}
-
 	.popup {
 		position: fixed;
 		height: 95%;
@@ -336,12 +333,20 @@ import { Image } from 'astro:assets';
 		background: linear-gradient(to bottom, transparent, var(--background-color-yotsuba-b));
 	}
 
-	body {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0;
-		overflow: hidden;
+	.bg-color {
+		background-color: var(--background-color);
+	}
+
+	.bg-color-alt {
+		background-color: var(--background-color-alt);
+	}
+
+	html.Yotsuba-B .bg-color {
+		background-color: var(--background-color-yotsuba-b);
+	}
+
+	html.Yotsuba-B .bg-color-alt {
+		background-color: var(--background-color-alt-yotsuba-b);
 	}
 
 	.astro-a {
@@ -434,7 +439,7 @@ import { Image } from 'astro:assets';
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: center;
-		width: 100%;
+		width:600px;
 		height: 300px;
 		transition: top 1s ease-in-out;
 		z-index: 100;
@@ -661,6 +666,7 @@ import { Image } from 'astro:assets';
 	}
 
 	.TourWrapper {
+		@apply cursor-pointer;
 		border-radius: 0.75rem;
 		display: flex;
 		align-items: center;
