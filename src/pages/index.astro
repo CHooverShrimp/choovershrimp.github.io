@@ -32,6 +32,12 @@ import { Image } from 'astro:assets';
 				allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
 			</iframe>
 		</div>
+		<div id="MareCon25" class="popup">
+			<iframe title="YouTube video player" class="embedded-cytube" width="560" height="315"
+				src="https://www.youtube.com/embed/XozFHxUimgs?si=w1DgLeNIxKSQ52EO"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen>
+			</iframe>
+		</div>
 
 		<div class="falling-image cursor-pointer" id="falling-image">
 			<h1> PTS V. IRL </h1>
@@ -69,7 +75,7 @@ import { Image } from 'astro:assets';
 		<div class="TourWrapper" data-popup="MareCon25">
 			<span class="event-name">MareCon 25</span>
 			<span class="dash"> - </span>
-			<span class="event-date">TBD</span>
+			<span class="event-date">Mar. 1st, 2025</span>
 		</div>
 
 
@@ -141,8 +147,8 @@ import { Image } from 'astro:assets';
 		<div class="stylechanger-container">
 			<label for="style">Style :
 				<select name="style" id="style" onchange="changeStyle()">
-					<option value="default" selected>Default</option>
-					<option value="Yotsuba-B">Yotsuba B</option>
+					<option class="text-black" value="default" selected>Default</option>
+					<option class="text-black" value="Yotsuba-B">Yotsuba B</option>
 				</select>
 			</label>
 		</div>
@@ -166,6 +172,7 @@ import { Image } from 'astro:assets';
 		--background-color-yotsuba-b: #eef2ff;
 		--background-color-alt-yotsuba-b: #d6daf0;
 		--background-highlighted-yotsuba-b: #d6bad0;
+		--text-header-yotsuba-b: #0f0c5d;
 	}
 
 	/* Search for Yotsuba-B for alternative style */
@@ -232,7 +239,7 @@ import { Image } from 'astro:assets';
 	}
 
 	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
-		color: #0f0c5d;
+		color: var(--text-header-yotsuba-b);
 	}
 	/* There must be a better way, but I'm to dumb to figure it out */
 	#CollageWrapper{
