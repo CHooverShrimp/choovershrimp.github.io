@@ -14,11 +14,11 @@ import { Image } from 'astro:assets';
 		<div class="curtain-left">
 			<Image  src="/Curtain.svg" alt="Left Curtain" width={1920} height={1080} loading="eager" />
 		</div>
-		
+
 		<div class="curtain-right">
 			<Image  src="/Curtain.svg" alt="Right Curtain" width={1920} height={1080} loading="eager" />
 		</div>
-		
+
 		<div id="enter-button-wrapper" >
 			<div id="enter-button" role="button" aria-label="Enter the site" tabindex="0"> </div>
 		</div>
@@ -32,6 +32,12 @@ import { Image } from 'astro:assets';
 				allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
 			</iframe>
 		</div>
+		<div id="MareCon25" class="popup">
+			<iframe title="YouTube video player" class="embedded-cytube" width="560" height="315"
+				src="https://www.youtube.com/embed/XozFHxUimgs?si=w1DgLeNIxKSQ52EO"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+				allowfullscreen>
+			</iframe>
+		</div>
 
 		<div class="falling-image" id="falling-image">
 			<h1> PTS V. IRL </h1>
@@ -39,9 +45,7 @@ import { Image } from 'astro:assets';
 			<h1> ADMISSION FREE </h1>
 		</div>
 		<div class="image-container">
-			<div class="gradient1"></div>
-			<Image src="/image1.png" alt="anons" class="fading-image" width={1920} height={1080}/>
-			<div class="gradient-overlay"></div>
+			<video src="/video.webm" autoplay loop muted class="fading-image" style="filter: blur(8px);"/>
 			<p id="Anon-quotes"> </p>
 		</div>
 
@@ -54,20 +58,20 @@ import { Image } from 'astro:assets';
 			<Image src="/image6.jpg" alt="anons" class="CollageImage" id="CollageImage5" width={672} height={504}/>
 			<Image src="/image7.jpg" alt="anons" class="CollageImage" id="CollageImage6" width={672} height={504}/>
 		</div>
-		
+
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> </b> </h>
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b> SEE OUR TOURS </b> </h>
 		<div class="TourWrapper" data-popup="MareFair24">
 			<span class="event-name">Mare Fair 2</span>
 			<span class="dash"> - </span>
 			<span class="event-date">Sept. 28th, 2024</span>
-		</div>	
+		</div>
 		<div class="TourWrapper" data-popup="MareCon25">
 			<span class="event-name">MareCon 25</span>
 			<span class="dash"> - </span>
-			<span class="event-date">TBD</span>
-		</div>	
-		
+			<span class="event-date">Mar. 1st, 2025</span>
+		</div>
+
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
 		<div class="portrait-wrapper">
@@ -129,26 +133,80 @@ import { Image } from 'astro:assets';
 			</div>
 			<!-- Add more portraits as needed -->
 		</div>
-			
-		
-		
+
+		<div class="bg-color-alt w-fit h-fit rounded-xl flex items-center flex-col p-10 shadow-lg mt-20">
+			<h class="pb-5 font-bold text-4xl"> CONTACT US </h>
+			<div class="email-protection">
+				<span class="e1">contact</span><span class="e2">@</span><span class="e3">pts-irl</span><span class="e4">.live</span>
+			</div>
+		</div>
+
+
+
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b>   </b> </h>
-		
+
 		<div class="stylechanger-container">
 			<label for="style">Style :
 				<select name="style" id="style" onchange="changeStyle()">
-					<option value="default" selected>Default</option>
-					<option value="Yotsuba-B">Yotsuba B</option>
+					<option class="text-black" value="default" selected>Default</option>
+					<option class="text-black" value="Yotsuba-B">Yotsuba B</option>
 				</select>
 			</label>
 		</div>
 
 	</main>
 
-	
+
 </Layout>
 
+<script>
+    const emailDiv = document.querySelector('.email-protection');
+    const copyModal = document.querySelector('#copy-modal');
+
+    if (emailDiv && copyModal) {
+        emailDiv.addEventListener('click', async () => {
+            const email = 'contact@pts-irl.live';
+            await navigator.clipboard.writeText(email);
+
+            copyModal.classList.add('show-modal');
+            setTimeout(() => {
+                copyModal.classList.remove('show-modal');
+            }, 2000);
+        });
+    }
+</script>
+
 <style>
+	.copy-modal {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background-color: var(--background-color-alt);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+	.copy-modal.show-modal {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    html.Yotsuba-B .copy-modal {
+        background-color: var(--background-color-alt-yotsuba-b);
+    }
+
+	.email-protection {
+		@apply cursor-pointer;
+        unicode-bidi: bidi-override;
+    }
+
 	:root {
 		--elastic: linear( 0, .0009 8.51%, -.0047 19.22%, .0016 22.39%, .023 27.81%, .0237 30.08%, .0144 31.81%, -.0051 33.48%, -.1116 39.25%, -.1181 40.59%, -.1058 41.79%, -.0455, .0701 45.34%, .9702 55.19%, 1.0696 56.97%, 1.0987 57.88%, 1.1146 58.82%, 1.1181 59.83%, 1.1092 60.95%, 1.0057 66.48%, .986 68.14%, .9765 69.84%, .9769 72.16%, .9984 77.61%, 1.0047 80.79%, .9991 91.48%, 1 );
 		--sine: linear( 0, .007 5.35%, .0282 10.75%, .0638 16.26%, .1144 21.96%, .1833 28.16%, .2717 34.9%, .6868 62.19%, .775 68.54%, .8457 74.3%, .9141 81.07%, .9621 87.52%, .9905 93.8%, 1 );
@@ -162,6 +220,7 @@ import { Image } from 'astro:assets';
 		--background-color-yotsuba-b: #eef2ff;
 		--background-color-alt-yotsuba-b: #d6daf0;
 		--background-highlighted-yotsuba-b: #d6bad0;
+		--text-header-yotsuba-b: #0f0c5d;
 	}
 
 	/* Search for Yotsuba-B for alternative style */
@@ -228,12 +287,16 @@ import { Image } from 'astro:assets';
 	}
 
 	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
+		color: var(--text-header-yotsuba-b);
+	}
+
+	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
 		color: #0f0c5d;
 	}
 	/* There must be a better way, but I'm to dumb to figure it out */
 	#CollageWrapper{
-		display: grid; 
-		grid-template-columns: repeat(2, 1fr); 
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
 		max-width: 100%;
 	}
 
@@ -249,13 +312,13 @@ import { Image } from 'astro:assets';
 
 	#CollageImage1, #CollageImage3, #CollageImage5{
 		transform: translateX(20px) rotate(2deg);
-		justify-self: right; 
+		justify-self: right;
 		transition: transform 0.5s ease;
 	}
 
 	#CollageImage2, #CollageImage4, #CollageImage6{
 		transform: translateX(-20px) translatey(100px) rotate(-1deg) ;
-		justify-self: left; 
+		justify-self: left;
 		transition: transform 0.5s ease;
 	}
 
@@ -329,6 +392,22 @@ import { Image } from 'astro:assets';
 		background: linear-gradient(to bottom, transparent, var(--background-color-yotsuba-b));
 	}
 
+	.bg-color {
+		background-color: var(--background-color);
+	}
+
+	.bg-color-alt {
+		background-color: var(--background-color-alt);
+	}
+
+	html.Yotsuba-B .bg-color {
+		background-color: var(--background-color-yotsuba-b);
+	}
+
+	html.Yotsuba-B .bg-color-alt {
+		background-color: var(--background-color-alt-yotsuba-b);
+	}
+
 	body {
 		display: flex;
 		justify-content: center;
@@ -354,24 +433,26 @@ import { Image } from 'astro:assets';
 		width: 100%;
 		height: 100vh;
 		z-index: 999;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		overflow: hidden; /* Add this */
 	}
 
 	.curtain-left, .curtain-right {
 		position: relative;
 		top: 0;
 		height: 100%;
+		min-width: 100%; /* Add this */
 		transition: transform 2.2s ease-in-out;
 		box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
 	}
 
 	.curtain-left img, .curtain-right img {
-		height: 100%;
+		height: 100vh;
 		width: auto;
 		display: block;
+		object-fit: cover; /* Add this */
 	}
 
 	.curtain-left {
@@ -458,7 +539,7 @@ import { Image } from 'astro:assets';
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 		position:absolute;
 		left:0;
 		right:0;
@@ -484,7 +565,7 @@ import { Image } from 'astro:assets';
 		z-index: 1000;
 		filter: drop-shadow(0 2px 2px #000);
 		background: none;
-		border: none; 
+		border: none;
 		opacity:0;
   	}
 
@@ -621,7 +702,7 @@ import { Image } from 'astro:assets';
 	.containerStyle1 {
 		--flex-alignment: flex-start;
 		display: flex;
-		
+
 		align-items: center;
 		padding-left:20px;
 		padding-right:20px;
@@ -651,6 +732,7 @@ import { Image } from 'astro:assets';
 	}
 
 	.TourWrapper {
+		@apply cursor-pointer;
 		border-radius: 0.75rem;
 		display: flex;
 		align-items: center;
@@ -700,12 +782,12 @@ import { Image } from 'astro:assets';
 	.TourWrapper:hover {
 		transform: scale(1.005);
 	}
-	
+
 	@media screen and (max-width:1400px) {
 		/* There must be a better way, but I'm to dumb to figure it out */
 		#CollageWrapper{
-			grid-template-columns: repeat(1, 1fr); 
-			justify-content: flex-start; 
+			grid-template-columns: repeat(1, 1fr);
+			justify-content: flex-start;
 		}
 
 		.CollageImage{
@@ -738,7 +820,7 @@ import { Image } from 'astro:assets';
 	@media screen and (max-width: 1200px) {
 		.fading-image {
 			width: auto;
-			height: auto;
+			height: 670px;
 			max-width: none;
     	}
 
