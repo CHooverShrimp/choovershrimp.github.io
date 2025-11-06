@@ -8,13 +8,23 @@ import {musicList} from '@components/pts-irl-musical.astro'
 ---
 
 <Layout title="PTS v.IRL - The Mare-sical! Official Soundtrack">
-    <div id="wrapper" class="my-20 max-w-196 text-white">
-        <div class="flex space-x-4">
-            <Image src={coverArt} transition:name="about" format="avif" alt="" width="350" class="rounded shadow-xl"/>
-            <div class="header space-x-4">
-                <h1 class="text-4xl font-bold"> PTS v.IRL - The Mare-sical! Official Soundtrack</h1>
-                <h1 class="text-2xl"> PTS v.IRL </h1>
+    <div id="wrapper" class="my-20 max-w-196 px-10 text-white">
+        <div class="flex md:flex-row flex-col space-x-4 items-center">
+            <Image src={coverArt} transition:name="about" format="avif" alt="" width="350" class="rounded shadow-xl "/>
+            <div class="header space-x-4 my-5">
+                <h1 class="md:text-4xl text-3xl font-bold"> PTS v.IRL - The Mare-sical!</h1>
+                <h1 class="text-2xl mt-5"> PTS v.IRL </h1>
                 <h1 class="text-2xl"> 2025 </h1>
+
+                <select
+                    id="download"
+                    class="rounded border-gray-300 shadow-sm px-4 py-2 bg-white text-black mt-5 cursor-pointer"
+                    onchange="location = this.value;"
+                >
+                    <option value="">Download</option>
+                    <option value="https://mega.apanx.net/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST%20-%20FLAC.zip?login=jogn:Jl1SGg7079ubYfzcRNvQKxiRg54MI1oAjoZjxSLhiXawvpA7rKz3Z8ap71uNsazn">FLAC</option>
+                    <option value="https://mega.apanx.net/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST%20-%20M4A.zip?login=jogn:Jl1SGg7079ubYfzcRNvQKxiRg54MI1oAjoZjxSLhiXawvpA7rKz3Z8ap71uNsazn">M4A</option>
+                </select>
             </div>
         </div>
 
@@ -22,7 +32,7 @@ import {musicList} from '@components/pts-irl-musical.astro'
         {
             musicList.map((music,index) =>
                 <hr/>
-                <div id={music.name.replace(/\s+/g, '')} class="music flex justify-between items-center py-4 px-4 hover:bg-white/10" data-url={music.url}>
+                <div id={music.name.replace(/\s+/g, '')} class="music flex justify-between items-center py-4 px-4 hover:bg-white/10 cursor-pointer" data-url={music.url}>
                     <div class="flex">
                         <div class="w-10"> {index + 1}. </div>
                         <div> {music.name} </div>
@@ -33,9 +43,10 @@ import {musicList} from '@components/pts-irl-musical.astro'
                 </div>
             )
         }
-
         <hr/>
         </div>
+
+        <div id="footer-space" class="mb-20">
     </div>
 
     <!-- Music Player Controller -->
@@ -191,7 +202,7 @@ import {musicList} from '@components/pts-irl-musical.astro'
             currentTrackEl.forEach((track) => {
                 track.textContent = name || 'Unknown Track';
             });
-            player!.classList.toggle('translate-y-full');
+            player!.classList.remove('translate-y-full');
 
             // Set volume from slider
             audio.volume = Number(volumeBar!.value) / 100;
