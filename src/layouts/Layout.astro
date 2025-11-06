@@ -27,7 +27,7 @@ import '../styles/global.css';
 	<body>
 		<slot />
 
-		<div class="stylechanger-container texts">
+		<div class="stylechanger-container texts main">
 			<label for="style">Style :
 				<select name="style" id="style">
 					<option class="text-black" value="default" selected>Default</option>
@@ -84,10 +84,12 @@ import '../styles/global.css';
 		color: var(--text-header-yotsuba-b);
 	}
 
+	main,
 	.main {
 		color: white;
 	}
 
+	html.Yotsuba-B main,
 	html.Yotsuba-B .main {
 		color: black;
 	}
@@ -151,15 +153,15 @@ import '../styles/global.css';
 
 		const selectedStyle = localStorage.getItem("selectedStyle");
 
-		// Set the select element to the last selected style from localStorage
-		if (selectedStyle) {
-			styleSelect.value = selectedStyle;
-			applyStyle(selectedStyle);
-		}
-
 		// Remove any existing listeners to prevent duplicates
 		const newSelect = styleSelect.cloneNode(true) as HTMLSelectElement;
 		styleSelect.parentNode?.replaceChild(newSelect, styleSelect);
+
+		// Set the select element to the last selected style from localStorage
+		if (selectedStyle) {
+			newSelect.value = selectedStyle;
+			applyStyle(selectedStyle);
+		}
 
 		// Attach the changeStyle function to the select change event
 		newSelect.addEventListener("change", function() {

@@ -88,8 +88,8 @@ import coverArt from '@assets/cover.jpg'
 		</div>
 
 
-		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> OUR MUSICS </b> </h>
-		<a href="/album/pts irl musical"> <Image src={coverArt} transition:name="maresical" format="avif" alt="" width="300"/> </a>
+		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> OUR MUSIC </b> </h>
+		<a href="/album/pts irl musical" class="hover:scale-105 transition-all"> <Image src={coverArt} transition:name="maresical" format="avif" alt="" width="300"/> </a>
 
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
@@ -812,7 +812,7 @@ import coverArt from '@assets/cover.jpg'
 </style>
 
 <script>
-	const fallingImage = document.getElementById('falling-image') as HTMLElement;
+
 
 	// Array of quotes
 	const quotes = [
@@ -831,6 +831,8 @@ import coverArt from '@assets/cover.jpg'
 	}
 
 	document.addEventListener('astro:page-load', function() {
+		const fallingImage = document.getElementById('falling-image') as HTMLElement;
+
 		window.scrollTo(0, 0); // Force users to go back to the top upon refresh
 
 		// Display a random quote on page load
@@ -865,12 +867,14 @@ import coverArt from '@assets/cover.jpg'
 				(document.querySelector('.curtain-container') as HTMLElement).style.display = 'none';
 			}, 2000);
 		});
+
+		// Easter egg, changes the quote by clicking on the board
+		fallingImage.addEventListener('click', function() {
+			const quoteElement = document.getElementById('Anon-quotes') as HTMLElement;
+			quoteElement.textContent = getRandomQuote();
+		});
 	});
 
-	// Easter egg, changes the quote by clicking on the board
-	fallingImage.addEventListener('click', function() {
-		const quoteElement = document.getElementById('Anon-quotes') as HTMLElement;
-		quoteElement.textContent = getRandomQuote();
-	});
+
 
 </script>
