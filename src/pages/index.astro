@@ -91,7 +91,7 @@ import coverArt from '@assets/cover.jpg'
 
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> OUR MUSICS </b> </h>
-		<a href="/album"> <Image src={coverArt} transition:name="about" format="avif" alt="" width="200"/> </a>
+		<a href="/album/pts irl musical"> <Image src={coverArt} transition:name="maresical" format="avif" alt="" width="300"/> </a>
 
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
@@ -166,15 +166,6 @@ import coverArt from '@assets/cover.jpg'
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px"> <b>   </b> </h>
 
-		<div class="stylechanger-container">
-			<label for="style">Style :
-				<select name="style" id="style" onchange="changeStyle()">
-					<option class="text-black" value="default" selected>Default</option>
-					<option class="text-black" value="Yotsuba-B">Yotsuba B</option>
-				</select>
-			</label>
-		</div>
-
 		<div id="copy-modal" class="copy-modal">
 			<p>Email copied to clipboard!</p>
 		</div>
@@ -231,22 +222,6 @@ import coverArt from '@assets/cover.jpg'
         unicode-bidi: bidi-override;
     }
 
-	:root {
-		--elastic: linear( 0, .0009 8.51%, -.0047 19.22%, .0016 22.39%, .023 27.81%, .0237 30.08%, .0144 31.81%, -.0051 33.48%, -.1116 39.25%, -.1181 40.59%, -.1058 41.79%, -.0455, .0701 45.34%, .9702 55.19%, 1.0696 56.97%, 1.0987 57.88%, 1.1146 58.82%, 1.1181 59.83%, 1.1092 60.95%, 1.0057 66.48%, .986 68.14%, .9765 69.84%, .9769 72.16%, .9984 77.61%, 1.0047 80.79%, .9991 91.48%, 1 );
-		--sine: linear( 0, .007 5.35%, .0282 10.75%, .0638 16.26%, .1144 21.96%, .1833 28.16%, .2717 34.9%, .6868 62.19%, .775 68.54%, .8457 74.3%, .9141 81.07%, .9621 87.52%, .9905 93.8%, 1 );
-		--mouse-x: 50%;
-		--mouse-y: 50%;
-
-		--background-color: #13151a;
-		--background-highlighted: #232730;
-		--background-color-alt: #0b0d10;
-
-		--background-color-yotsuba-b: #eef2ff;
-		--background-color-alt-yotsuba-b: #d6daf0;
-		--background-highlighted-yotsuba-b: #d6bad0;
-		--text-header-yotsuba-b: #0f0c5d;
-	}
-
 	/* Search for Yotsuba-B for alternative style */
 	.embedded-cytube {
 		width: 90%;
@@ -301,22 +276,10 @@ import coverArt from '@assets/cover.jpg'
 		transition: transform 0.1s ease-out,opacity 0.1s ease-in-out;
 	}
 
-	.stylechanger-container {
-		margin-left: auto;
-		margin-right: 20px;
-	}
-
 	h, h1, h2, h3, h4, h5, h6 {
 		text-align: center;
 	}
 
-	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
-		color: var(--text-header-yotsuba-b);
-	}
-
-	html.Yotsuba-B h, h1, h2, h3, h4, h5, h6{
-		color: #0f0c5d;
-	}
 	/* There must be a better way, but I'm to dumb to figure it out */
 	#CollageWrapper{
 		display: grid;
@@ -370,10 +333,6 @@ import coverArt from '@assets/cover.jpg'
 		line-height: 1.6;
 	}
 
-	html.Yotsuba-B main {
-		color: black;
-	}
-
 	.image-container {
 		position: relative;
 		display: flex;
@@ -416,21 +375,6 @@ import coverArt from '@assets/cover.jpg'
 		background: linear-gradient(to bottom, transparent, var(--background-color-yotsuba-b));
 	}
 
-	.bg-color {
-		background-color: var(--background-color);
-	}
-
-	.bg-color-alt {
-		background-color: var(--background-color-alt);
-	}
-
-	html.Yotsuba-B .bg-color {
-		background-color: var(--background-color-yotsuba-b);
-	}
-
-	html.Yotsuba-B .bg-color-alt {
-		background-color: var(--background-color-alt-yotsuba-b);
-	}
 
 	body {
 		display: flex;
@@ -868,3 +812,67 @@ import coverArt from '@assets/cover.jpg'
 		}
 	}
 </style>
+
+<script>
+	const fallingImage = document.getElementById('falling-image') as HTMLElement;
+
+	// Array of quotes
+	const quotes = [
+		'"When I was a lad I clopped four dozen times." - Anon',
+		'"Sex with Purp." - Anon',
+		'"Portal to Equestria!" - Anon',
+		'"Why do they all have dicks!?" - Anon',
+		'"We\'re anons to the core!" - Anon',
+		'"Hey, is that Lauren Faust?!" - Anon',
+	];
+
+	// Function to get a random quote
+	function getRandomQuote() {
+		const randomIndex = Math.floor(Math.random() * quotes.length);
+		return quotes[randomIndex];
+	}
+
+	document.addEventListener('astro:page-load', function() {
+		window.scrollTo(0, 0); // Force users to go back to the top upon refresh
+
+		// Display a random quote on page load
+		const quoteElement = document.getElementById('Anon-quotes') as HTMLElement;
+		quoteElement.textContent = getRandomQuote();
+
+
+		(document.getElementById('enter-button') as HTMLElement).addEventListener('click', function() {
+			// Setting the panel to go down
+			fallingImage.style.top = '0px'; // Set final position
+
+			const elementLeft = document.querySelector('.curtain-left') as HTMLElement;
+			const elementRight = document.querySelector('.curtain-right') as HTMLElement;
+
+			elementLeft.classList.add('animate-curtain-left');
+			elementRight.classList.add('animate-curtain-right');
+
+			// Hiding the button
+			this.classList.add('fade-out');
+			setTimeout(() => {
+				this.style.display = 'none';
+			}, 500)
+
+			// Disable hidden overflow, let user scroll
+			document.body.style.overflowY = 'scroll';
+
+			// Let users interact immediately
+			(document.querySelector('.curtain-container') as HTMLElement).style.pointerEvents = 'none';
+
+			// Hide the curtain container after the animation
+			setTimeout(function() {
+				(document.querySelector('.curtain-container') as HTMLElement).style.display = 'none';
+			}, 2000);
+		});
+	});
+
+	// Easter egg, changes the quote by clicking on the board
+	fallingImage.addEventListener('click', function() {
+		const quoteElement = document.getElementById('Anon-quotes') as HTMLElement;
+		quoteElement.textContent = getRandomQuote();
+	});
+
+</script>

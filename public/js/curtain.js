@@ -29,21 +29,21 @@ document.getElementById('enter-button').addEventListener('click', function() {
 
     const elementLeft = document.querySelector('.curtain-left');
     const elementRight = document.querySelector('.curtain-right');
-    
+
     elementLeft.classList.add('animate-curtain-left');
     elementRight.classList.add('animate-curtain-right');
-    
+
     // Hiding the button
     this.classList.add('fade-out');
     setTimeout(() => {
         this.style.display = 'none';
     }, 500)
-    
+
     // Disable hidden overflow, let user scroll
     document.body.style.overflowY = 'scroll';
 
     // Let users interact immediately
-    document.querySelector('.curtain-container').style.pointerEvents = 'none'; 
+    document.querySelector('.curtain-container').style.pointerEvents = 'none';
 
     // Hide the curtain container after the animation
     setTimeout(function() {
@@ -57,27 +57,3 @@ document.getElementById('falling-image').addEventListener('click', function() {
     quoteElement.textContent = getRandomQuote();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const styleSelect = document.getElementById("style");
-    const selectedStyle = localStorage.getItem("selectedStyle");
-
-    // Set the select element to the last selected style from localStorage
-    if (selectedStyle) {
-        styleSelect.value = selectedStyle; // Set the selected option
-        changeStyle(); // Call changeStyle to apply the class
-    }
-
-    // Attach the changeStyle function to the select change event
-    styleSelect.addEventListener("change", changeStyle);
-
-    function changeStyle() {
-        const selectedStyle = styleSelect.value;
-        if (selectedStyle === "Yotsuba-B") {
-            document.documentElement.classList.add("Yotsuba-B");
-            localStorage.setItem("selectedStyle", "Yotsuba-B"); // Store the selection
-        } else {
-            document.documentElement.classList.remove("Yotsuba-B");
-            localStorage.setItem("selectedStyle", "default"); // Reset selection
-        }
-    }
-});

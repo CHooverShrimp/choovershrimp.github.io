@@ -26,10 +26,72 @@ import '../styles/global.css';
 	</head>
 	<body>
 		<slot />
+
+		<div class="stylechanger-container texts">
+			<label for="style">Style :
+				<select name="style" id="style">
+					<option class="text-black" value="default" selected>Default</option>
+					<option class="text-black" value="Yotsuba-B">Yotsuba B</option>
+				</select>
+			</label>
+		</div>
 		<Footer />
 	</body>
 </html>
 <style is:global>
+		.stylechanger-container {
+		margin-left: auto;
+		margin-right: 20px;
+	}
+
+	:root {
+		--elastic: linear( 0, .0009 8.51%, -.0047 19.22%, .0016 22.39%, .023 27.81%, .0237 30.08%, .0144 31.81%, -.0051 33.48%, -.1116 39.25%, -.1181 40.59%, -.1058 41.79%, -.0455, .0701 45.34%, .9702 55.19%, 1.0696 56.97%, 1.0987 57.88%, 1.1146 58.82%, 1.1181 59.83%, 1.1092 60.95%, 1.0057 66.48%, .986 68.14%, .9765 69.84%, .9769 72.16%, .9984 77.61%, 1.0047 80.79%, .9991 91.48%, 1 );
+		--sine: linear( 0, .007 5.35%, .0282 10.75%, .0638 16.26%, .1144 21.96%, .1833 28.16%, .2717 34.9%, .6868 62.19%, .775 68.54%, .8457 74.3%, .9141 81.07%, .9621 87.52%, .9905 93.8%, 1 );
+		--mouse-x: 50%;
+		--mouse-y: 50%;
+
+		--background-color: #13151a;
+		--background-highlighted: #232730;
+		--background-color-alt: #0b0d10;
+
+		--background-color-yotsuba-b: #eef2ff;
+		--background-color-alt-yotsuba-b: #d6daf0;
+		--background-highlighted-yotsuba-b: #d6bad0;
+		--text-header-yotsuba-b: #0f0c5d;
+	}
+
+	.bg-color {
+		background-color: var(--background-color);
+	}
+
+	.bg-color-alt {
+		background-color: var(--background-color-alt);
+	}
+
+	html.Yotsuba-B .bg-color {
+		background-color: var(--background-color-yotsuba-b);
+	}
+
+	html.Yotsuba-B .bg-color-alt {
+		background-color: var(--background-color-alt-yotsuba-b);
+	}
+
+	html h, html h1, html h2, html h3, html h4, html h5, html h6{
+		color: white;
+	}
+
+	html.Yotsuba-B h, html.Yotsuba-B h1, html.Yotsuba-B h2, html.Yotsuba-B h3, html.Yotsuba-B h4, html.Yotsuba-B h5, html.Yotsuba-B h6{
+		color: var(--text-header-yotsuba-b);
+	}
+
+	.main {
+		color: white;
+	}
+
+	html.Yotsuba-B .main {
+		color: black;
+	}
+
 	html, body {
 		display: flex;
 		flex-direction: column;
@@ -82,3 +144,42 @@ import '../styles/global.css';
 			monospace;
 	}
 </style>
+
+<script>
+	function initStyleSelector() {
+		const styleSelect = document.getElementById("style") as HTMLSelectElement;
+
+		const selectedStyle = localStorage.getItem("selectedStyle");
+
+		// Set the select element to the last selected style from localStorage
+		if (selectedStyle) {
+			styleSelect.value = selectedStyle;
+			applyStyle(selectedStyle);
+		}
+
+		// Remove any existing listeners to prevent duplicates
+		const newSelect = styleSelect.cloneNode(true) as HTMLSelectElement;
+		styleSelect.parentNode?.replaceChild(newSelect, styleSelect);
+
+		// Attach the changeStyle function to the select change event
+		newSelect.addEventListener("change", function() {
+			const selectedStyle = this.value;
+			applyStyle(selectedStyle);
+			localStorage.setItem("selectedStyle", selectedStyle);
+		});
+
+		function applyStyle(style: string) {
+			if (style === "Yotsuba-B") {
+				document.documentElement.classList.add("Yotsuba-B");
+			} else {
+				document.documentElement.classList.remove("Yotsuba-B");
+			}
+		}
+	}
+
+	// Run on initial page load
+	document.addEventListener('DOMContentLoaded', initStyleSelector);
+
+	// Run on each Astro page navigation
+	document.addEventListener('astro:page-load', initStyleSelector);
+</script>
