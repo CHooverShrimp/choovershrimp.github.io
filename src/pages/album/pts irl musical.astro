@@ -68,7 +68,7 @@ import {musicList} from '@components/pts-irl-musical.astro'
                 <input
                     type="range"
                     id="progress-bar"
-                    class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-white"
+                    class="w-full h-2 bg-gray-500 rounded-lg appearance-none cursor-pointer accent-white"
                     min="0"
                     max="100"
                     value="0"
@@ -114,7 +114,7 @@ import {musicList} from '@components/pts-irl-musical.astro'
                 </div>
 
                 <!-- Volume Control (right side) -->
-                <div class="flex items-center space-x-2 flex-1 justify-end">
+                <div class="flex items-center space-x-2 flex-1 justify-end sm:sm-0 mt-5">
                     <button id="mute-btn" class="text-white hover:text-gray-300 transition">
                         <svg id="volume-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
@@ -126,7 +126,7 @@ import {musicList} from '@components/pts-irl-musical.astro'
                     <input
                         type="range"
                         id="volume-bar"
-                        class="w-24 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-white"
+                        class="w-24 h-2 bg-gray-500 rounded-lg appearance-none cursor-pointer accent-white"
                         min="0"
                         max="100"
                         value="100"
