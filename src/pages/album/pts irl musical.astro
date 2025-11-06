@@ -1,0 +1,71 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import coverArt from '@assets/cover.jpg'
+
+import {musicList} from '@components/pts-irl-musical.astro'
+---
+
+<Layout title="PTS v.IRL - The Mare-sical! Official Soundtrack">
+    <div id="wrapper" class="my-20 max-w-196 text-white">
+        <div class="flex space-x-4">
+            <Image src={coverArt} transition:name="about" format="avif" alt="" width="350" class="rounded shadow-xl"/>
+            <div class="header space-x-4">
+                <h1 class="text-4xl font-bold"> PTS v.IRL - The Mare-sical! Official Soundtrack</h1>
+                <h1 class="text-2xl"> PTS v.IRL </h1>
+                <h1 class="text-2xl"> 2025 </h1>
+            </div>
+        </div>
+
+        <div class="pt-20">
+        {
+            musicList.map((music,index) =>
+                <hr/>
+                <div id={music.name.replace(/\s+/g, '')} class="music flex justify-between items-center py-4 px-4 hover:bg-white/10" data-url={music.url}>
+                    <div class="flex">
+                        <div class="w-10"> {index + 1}. </div>
+                        <div> {music.name} </div>
+                    </div>
+                    <div class="duration text-gray-400 text-sm ml-4">
+                        {music.url ? '--:--' : ''}
+                    </div>
+                </div>
+            )
+        }
+
+        <hr/>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    document.addEventListener('astro:page-load', function()
+    {
+        function formatDuration(seconds: number): string {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Load audio durations for all tracks
+        document.querySelectorAll('.music').forEach((el) => {
+            const url = el.getAttribute('data-url');
+            const durationEl = el.querySelector('.duration');
+
+            if (url && durationEl) {
+                const audio = new Audio(url);
+
+                audio.addEventListener('loadedmetadata', () => {
+                    if (audio.duration && isFinite(audio.duration)) {
+                        durationEl.textContent = formatDuration(audio.duration);
+                    }
+                });
+
+                audio.addEventListener('error', () => {
+                    durationEl.textContent = '';
+                });
+            }
+        });
+    });
+</script>

@@ -1,6 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import { Image } from 'astro:assets';
+
+import coverArt from '@assets/cover.jpg'
 ---
 
 <!-- TODO: ADD A BACK BUTTON FOR MOBILE -->
@@ -86,6 +88,10 @@ import { Image } from 'astro:assets';
 			<span class="dash"> - </span>
 			<span class="event-date">Sept. 6th, 2025</span>
 		</div>
+
+
+		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> OUR MUSICS </b> </h>
+		<a href="/album"> <Image src={coverArt} transition:name="about" format="avif" alt="" width="200"/> </a>
 
 
 		<h style="margin: 20px; margin-top:200px; font-size: 50px; "> <b> MEET OUR TALENTS </b> </h>
