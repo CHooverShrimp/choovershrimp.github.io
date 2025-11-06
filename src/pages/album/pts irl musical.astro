@@ -6,7 +6,9 @@ import coverArt from '@assets/cover.jpg'
 
 import {musicList} from '@components/pts-irl-musical.astro'
 ---
-
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
 <Layout title="PTS v.IRL - The Mare-sical! Official Soundtrack">
     <div id="wrapper" class="my-20 max-w-196 px-10 text-white">
         <div class="flex md:flex-row flex-col space-x-4 items-center">
@@ -19,11 +21,10 @@ import {musicList} from '@components/pts-irl-musical.astro'
                 <select
                     id="download"
                     class="rounded border-gray-300 shadow-sm px-4 py-2 bg-white text-black mt-5 cursor-pointer"
-                    onchange="location = this.value;"
                 >
                     <option value="">Download</option>
-                    <option value="https://mega.apanx.net/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST%20-%20FLAC.zip?login=jogn:Jl1SGg7079ubYfzcRNvQKxiRg54MI1oAjoZjxSLhiXawvpA7rKz3Z8ap71uNsazn">FLAC</option>
-                    <option value="https://mega.apanx.net/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST%20-%20M4A.zip?login=jogn:Jl1SGg7079ubYfzcRNvQKxiRg54MI1oAjoZjxSLhiXawvpA7rKz3Z8ap71uNsazn">M4A</option>
+                    <option value="bundle-flac">FLAC (Bundle All Tracks)</option>
+                    <option value="https://static.pts-irl.live/PTS%20v.IRL%20-%20The%20MARE-sical!%20OST%20-%20M4A.zip">M4A</option>
                 </select>
             </div>
         </div>
@@ -302,4 +303,116 @@ import {musicList} from '@components/pts-irl-musical.astro'
             });
         });
     });
+
+
+
+
+    // DOWNLOAD FLAC
+
+    document.addEventListener('astro:page-load', function() {
+        const downloadSelect = document.getElementById('download') as HTMLSelectElement;
+
+        if (downloadSelect) {
+            downloadSelect.addEventListener('change', async function(e) {
+                const value = this.value;
+
+                // Check if it's the bundle FLAC option
+                if (value === 'bundle-flac') {
+                    e.preventDefault();
+                    this.value = ''; // Reset dropdown
+                    await bundleAndDownloadTracks();
+                } else if (value) {
+                    // Let the existing direct download links work
+                    window.location.href = value;
+                }
+            });
+        }
+    });
+
+    async function bundleAndDownloadTracks() {
+        // Get all tracks from musicList
+        const tracks = Array.from(document.querySelectorAll('.music'))
+            .filter(el => el.getAttribute('data-url'))
+            .map(el => ({
+                url: el.getAttribute('data-url')!,
+                name: el.querySelector('div:nth-child(2)')?.textContent?.trim() || 'Unknown'
+            }));
+
+        if (tracks.length === 0) {
+            alert('No tracks available to download');
+            return;
+        }
+
+        // Show progress indicator
+        const progressDiv = document.createElement('div');
+        progressDiv.id = 'download-progress';
+        progressDiv.className = 'fixed top-4 right-4 bg-gray-800 text-white p-4 rounded-lg shadow-xl z-50';
+        progressDiv.innerHTML = `
+            <div class="font-semibold mb-2">Preparing Download...</div>
+            <div class="text-sm text-gray-400">0 of ${tracks.length} tracks</div>
+            <div class="w-64 bg-gray-700 rounded-full h-2 mt-2">
+                <div id="progress-fill" class="bg-white h-2 rounded-full transition-all" style="width: 0%"></div>
+            </div>
+        `;
+        document.body.appendChild(progressDiv);
+
+        try {
+            // @ts-ignore - JSZip loaded via CDN
+            const zip = new JSZip();
+            const folder = zip.folder('PTS v.IRL - The MARE-sical OST');
+
+            // Download each track
+            for (let i = 0; i < tracks.length; i++) {
+                const track = tracks[i];
+
+                // Update progress
+                const progressText = progressDiv.querySelector('.text-sm');
+                const progressFill = document.getElementById('progress-fill');
+                if (progressText) progressText.textContent = `${i + 1} of ${tracks.length} tracks`;
+                if (progressFill) progressFill.style.width = `${((i + 1) / tracks.length) * 100}%`;
+
+                try {
+                    // Fetch the audio file
+                    const response = await fetch(track.url);
+                    const blob = await response.blob();
+
+                    // Add to zip with sanitized filename
+                    const filename = `${String(i + 1).padStart(2, '0')}. ${sanitizeFilename(track.name)}.flac`;
+                    folder?.file(filename, blob);
+                } catch (err) {
+                    console.error(`Failed to download ${track.name}:`, err);
+                }
+            }
+
+            // Update to show generation phase
+            const progressText = progressDiv.querySelector('.text-sm');
+            if (progressText) progressText.textContent = 'Generating zip file...';
+
+            // Generate zip file
+            const zipBlob = await zip.generateAsync({ type: 'blob' }, (metadata: any) => {
+                const progressFill = document.getElementById('progress-fill');
+                if (progressFill) progressFill.style.width = `${metadata.percent}%`;
+            });
+
+            // Download the zip
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(zipBlob);
+            link.download = 'PTS v.IRL - The MARE-sical OST.zip';
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            // Remove progress indicator
+            progressDiv.remove();
+
+        } catch (error) {
+            console.error('Download failed:', error);
+            alert('Failed to create download bundle. Please try again.');
+            progressDiv.remove();
+        }
+    }
+
+    function sanitizeFilename(name: string): string {
+        // Remove invalid filename characters
+        return name.replace(/[<>:"/\\|?*]/g, '').trim();
+    }
 </script>
